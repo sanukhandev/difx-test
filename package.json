@@ -5,10 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:server": "npm run start --prefix backend-node"
+    "start:server": "npm run start --prefix backend-node",
+    "start:client": "npm run start --prefix frontend-react",
+    "install:server": "cd backend-node && npm install && cd..",
+    "install:client": "cd frontend-react && npm install && cd..",
+    "install:all": "npm run install:server && npm run install:client",
+    "run:dev": "concurrently \"npm run start:server\" \"npm run start:client\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-  }
+  },
+  "dependencies": {
+    "movies-backend": "file:backend-node",
+    "movies-frontend": "file:frontend-react"
+}
 }
