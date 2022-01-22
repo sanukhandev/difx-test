@@ -9,15 +9,12 @@
     "start:client": "npm run start --prefix frontend-react",
     "install:server": "cd backend-node && npm install && cd..",
     "install:client": "cd frontend-react && npm install && cd..",
-    "install:all": "npm run install:server && npm run install:client",
+    "install:all": "npm install && npm run install:server && npm run install:client",
     "run:dev": "concurrently \"npm run start:server\" \"npm run start:client\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-  },
-  "dependencies": {
-    "movies-backend": "file:backend-node",
-    "movies-frontend": "file:frontend-react"
-}
+    "concurrently": "^7.0.0"
+  }
 }
