@@ -14,12 +14,10 @@ const mapData = (data,res) => {
 }
 
 const mapError = (error,res) => {
-    if (error) {
         res.status(500).json({
-            message: 'Error',
+            message: error ? error : 'Something wnet wrong',
             status: 'ERROR'
         });
-    }
 }
 
 module.exports = {
