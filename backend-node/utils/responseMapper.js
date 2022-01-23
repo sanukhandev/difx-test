@@ -14,6 +14,7 @@ const mapData = (data,res) => {
 }
 
 const mapError = (error,res) => {
+    console.log(error);
         res.status(500).json({
             message: error ? error : 'Something wnet wrong',
             status: 'ERROR'
