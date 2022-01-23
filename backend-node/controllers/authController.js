@@ -24,14 +24,16 @@ const loginUser = async (req, res) => {
         const user = await User.findOne({
             where: {
                 email,
+            },
+            attributes: {
+                exclude: ['password', 'createdAt', 'updatedAt']
             }
         });
-        
+
         !user &&  mapError('User not found', res);
         !comparePassword(password, user.password) && mapError('Invalid Password', res);
 
         const {dataValues: sessionObj} = user;
-        delete sessionObj.password;
         const accessToken = generateAccessToken(sessionObj);
         mapData({accessToken}, res);
     } catch (error) {   
