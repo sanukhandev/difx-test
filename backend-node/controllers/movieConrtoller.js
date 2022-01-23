@@ -73,9 +73,35 @@ const createMovie = async (req, res) => {
     }
 }
 
+const updateMovie = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const {title, description, year, rating, ticketPrice, genre, poster} = req.body;
+        const movie = await Movies.update({
+            name:title,
+            description,
+            year,
+            rating,
+            ticketPrice,
+            genre,
+            poster,
+            slug: slugGenerator(title),
+            userId: req.user.id
+        }, {
+            where: {
+                id,
+            }
+        });
+        mapData(movie, res);
+    } catch (error) {
+        mapError(error, res);
+    }
+}
+
 module.exports = {
     getAllMovies,
     getMoviesById,
     getMoviesBySlug,
-    createMovie
+    createMovie,
+    updateMovie
 }
