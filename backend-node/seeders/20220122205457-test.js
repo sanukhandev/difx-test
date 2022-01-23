@@ -1,6 +1,6 @@
 'use strict';
 
-const { encrypt } = require("../utils/encrypt");
+const { encryptPassword } = require("../utils/encrypt");
 
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -8,7 +8,7 @@ module.exports = {
       firstName: "Sanu",
       lastName: "Khan",
       email: "sanu@test.com",
-      password: encrypt('testPassword'),
+      password: encryptPassword('testPassword'),
       createdAt: new Date(),
       updatedAt: new Date()
       }], {});

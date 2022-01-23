@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     ticketPrice: DataTypes.INTEGER,
     country: DataTypes.STRING,
     genre: DataTypes.STRING,
-    poster: DataTypes.STRING
+    poster: DataTypes.STRING,
+    slug: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Movies',

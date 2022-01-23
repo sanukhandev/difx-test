@@ -6,8 +6,8 @@
     "start": "nodemon ./bin/www",
     "db:create": "npx sequelize-cli db:create",
     "db:migrate": "npx sequelize-cli db:migrate",
-    "db:g:migration": "npx sequelize-cli migration:generate --name",
-    "db:seed": "npx sequelize-cli db:seed:all"
+    "db:seed": "npx sequelize-cli db:seed:all",
+    "setup:db":"npm run db:create && npm run db:migrate && npm run db:seed"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
