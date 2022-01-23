@@ -65,6 +65,7 @@ const createMovie = async (req, res) => {
             poster,
             trailerUrl,
             slug: slugGenerator(title),
+            userId: req.user.id
         });
         mapData(movie, res);
     } catch (error) {
