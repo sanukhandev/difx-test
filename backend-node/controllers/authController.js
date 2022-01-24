@@ -34,8 +34,8 @@ const loginUser = async (req, res) => {
         !comparePassword(password, user.password) && mapError('Invalid Password', res);
 
         const {dataValues: sessionObj} = user;
-        const accessToken = generateAccessToken(sessionObj);
-        mapData({accessToken}, res);
+        const token = generateAccessToken(sessionObj);
+        mapData({token, user:sessionObj}, res);
     } catch (error) {   
         mapError(error, res);
     }
