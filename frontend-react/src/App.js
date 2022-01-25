@@ -1,14 +1,15 @@
 import { createContext, useReducer } from "react";
-import {  BrowserRouter as Router,
+import {
+  BrowserRouter as Router,
   Route,
   Navigate,
   Routes,
- } from "react-router-dom";
+} from "react-router-dom";
 import AddMovie from "./pages/addMovie";
 import ListMovies from "./pages/listMovies";
 import MovieBySlug from "./pages/movieBySlug";
 
-export const AuthContext = createContext(); 
+export const AuthContext = createContext();
 const initialState = {
   isAuthenticated: false,
   user: null,
@@ -44,16 +45,16 @@ const App = () => {
       state,
       dispatch
     }}>
-   <Router>
-     <Routes>
-     <Route path="/film" element={<ListMovies />} />
-     <Route path="/addMovie" element={<AddMovie/>} />
-     <Route path="/slug/:slug" element={<MovieBySlug />} />
-     <Route path="/" element={<Navigate replace to="/film" />} />
-     
-      </Routes>
-   </Router>
-   </AuthContext.Provider>
+      <Router>
+        <Routes>
+          <Route path="/film" element={<ListMovies />} />
+          <Route path="/addMovie" element={<AddMovie />} />
+          <Route path="/slug/:slug" element={<MovieBySlug />} />
+          <Route path="/" element={<Navigate replace to="/film" />} />
+
+        </Routes>
+      </Router>
+    </AuthContext.Provider>
   )
 }
 
