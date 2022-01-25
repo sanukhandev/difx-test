@@ -31,38 +31,81 @@ const ListMovies = ({ movies, onDeleteMovie }) => {
     ]
     return (
         <div>
-            <div className="flex justify-center">
-                <div className="w-full max-w-md">
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                        <div className="flex justify-between items-center">
-                            <h1 className="text-2xl font-bold">List of movies</h1>
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                <Link to="/addMovie">Add new movie</Link>
-                            </button>
-                        </div>
-                        <table className="table-auto">
-                            <thead>
-                                <tr>
-                                    <th className="px-4 py-2">Title</th>
-                                    <th className="px-4 py-2">Genre</th>
-                                    <th className="px-4 py-2">Year</th>
-                                    <th className="px-4 py-2">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {movies.map(movie => (
-                                    <tr key={movie.id}>
-                                        <td className="border px-4 py-2">{movie.title}</td>
-                                        <td className="border px-4 py-2">{movie.genre}</td>
-                                        <td className="border px-4 py-2">{movie.year}</td>
-                                        <td className="border px-4 py-2">
-                                            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => onDeleteMovie(movie.id)}>Delete</button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+            <div className="mx-40 my-5">
+                <div className="mt-5 md:mt-0 md:col-span-2">
+                    <div className="flex flex-wrap">
+                        <h1 className="text-2xl font-bold text-gray-800 mx-5 my-5">List Movies</h1>
+                        <Link to="/addMovie" className="h-10 my-5 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Add New Movie
+                        </Link>
                     </div>
+                    <div className="shadow sm:rounded-md sm:overflow-hidden">
+                        <div class="flex flex-col">
+                            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                <div class="inline-block min-w-full sm:px-6 lg:px-8">
+                                    <div class="overflow-hidden">
+                                        <table class="min-w-full">
+                                            <thead class="bg-white border-b">
+                                                <tr>
+                                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                                        #
+                                                    </th>
+                                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                                        First
+                                                    </th>
+                                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                                        Last
+                                                    </th>
+                                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                                        Handle
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        Mark
+                                                    </td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        Otto
+                                                    </td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        @mdo
+                                                    </td>
+                                                </tr>
+                                                <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        Jacob
+                                                    </td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        Thornton
+                                                    </td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        @fat
+                                                    </td>
+                                                </tr>
+                                                <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        Larry
+                                                    </td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        Wild
+                                                    </td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        @twitter
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
