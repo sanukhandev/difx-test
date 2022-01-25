@@ -30,10 +30,10 @@ const AddMovie = () => {
                                         Brief description About the movie.
                                     </p>
                                 </div>
-                                <div class="md:grid md:grid-cols-2 md:gap-6">
+                                <div className="md:grid md:grid-cols-2 md:gap-6">
                                     <div className="md:col-span-1">
-                                    <label for="gnere" class="block text-sm font-medium text-gray-700">Movie Genre</label>
-                                    <select id="gnere" name="gnere" autocomplete="gnere" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <label for="gnere" className="block text-sm font-medium text-gray-700">Movie Genre</label>
+                                    <select id="gnere" name="gnere" autocomplete="gnere" className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option>Drama</option>
                                         <option>Thriller</option>
                                         <option>Si-Fi</option>
@@ -44,7 +44,7 @@ const AddMovie = () => {
                                     </select>
                                     </div>
                                    <div className="md:col-span-1">
-                                   <label for="rating" class="block text-sm font-medium text-gray-700">Movie Rating</label>
+                                   <label for="rating" className="block text-sm font-medium text-gray-700">Movie Rating</label>
                                     <div className="mt-1 flex rounded-md shadow-sm">
                                         <input type="number" id="rating" className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300 focus:outline-none py-2" placeholder="IMDB Rating" />
                                     </div>

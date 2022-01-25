@@ -1,10 +1,11 @@
 import { createContext, useReducer } from "react";
 import {
   BrowserRouter as Router,
-  Route,
   Navigate,
+  Route,
   Routes,
 } from "react-router-dom";
+import Header from "./components/header";
 import AddMovie from "./pages/addMovie";
 import ListMovies from "./pages/listMovies";
 import ViewMovie from "./pages/viewMovie";
@@ -46,16 +47,18 @@ const App = () => {
       dispatch
     }}>
       <Router>
+        <Header />
         <Routes>
           <Route path="/film" element={<ListMovies />} />
           <Route path="/addMovie" element={<AddMovie />} />
           <Route path="/slug/:slug" element={<ViewMovie />} />
           <Route path="/" element={<Navigate replace to="/film" />} />
-
         </Routes>
       </Router>
+
+
     </AuthContext.Provider>
-  )
+  );
 }
 
 
