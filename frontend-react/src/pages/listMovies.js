@@ -62,7 +62,7 @@ const ListMovies = ({ movies, onDeleteMovie }) => {
                                                         Genre
                                                     </th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                                        Action
+                                                        View
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -82,14 +82,12 @@ const ListMovies = ({ movies, onDeleteMovie }) => {
                                                             {movie.genre}
                                                         </td>
                                                         <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                                            <Link to={`/editMovie/${movie.id}`} className="h-10 my">
+                                                            <Link to={`/slug/${movie.id}`} className="h-10 my">
                                                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2">
                                                                     View
                                                                 </button>
                                                             </Link>
-                                                            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-2" onClick={() => onDeleteMovie(movie.id)}>
-                                                                Delete
-                                                            </button>
+                                                           
                                                         </td>
                                                     </tr>
                                                 ))}

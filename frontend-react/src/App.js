@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import AddMovie from "./pages/addMovie";
 import ListMovies from "./pages/listMovies";
-import MovieBySlug from "./pages/movieBySlug";
+import ViewMovie from "./pages/viewMovie";
 
 export const AuthContext = createContext();
 const initialState = {
@@ -49,7 +49,7 @@ const App = () => {
         <Routes>
           <Route path="/film" element={<ListMovies />} />
           <Route path="/addMovie" element={<AddMovie />} />
-          <Route path="/slug/:slug" element={<MovieBySlug />} />
+          <Route path="/slug/:slug" element={<ViewMovie />} />
           <Route path="/" element={<Navigate replace to="/film" />} />
 
         </Routes>
