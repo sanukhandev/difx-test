@@ -8,6 +8,8 @@ import {
 import Header from "./components/header";
 import AddMovie from "./pages/addMovie";
 import ListMovies from "./pages/listMovies";
+import LoginPage from "./pages/login";
+import SignUp from "./pages/signUp";
 import ViewMovie from "./pages/viewMovie";
 
 export const AuthContext = createContext();
@@ -49,6 +51,8 @@ const App = () => {
       <Router>
         <Header />
         <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/film" element={<ListMovies />} />
           <Route path="/addMovie" element={<AddMovie />} />
           <Route path="/slug/:slug" element={<ViewMovie />} />
