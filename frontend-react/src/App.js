@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -21,8 +21,9 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      localStorage.setItem("user", JSON.stringify(action.payload.user));
-      localStorage.setItem("token", JSON.stringify(action.payload.token));
+      const { user, token } = action.payload;
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
       return {
         ...state,
         isAuthenticated: true,
@@ -36,6 +37,13 @@ const reducer = (state, action) => {
         isAuthenticated: false,
         user: null
       };
+    case "SET_STATE":
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: JSON.parse(localStorage.getItem("user")),
+        token: localStorage.getItem("token")
+      };
     default:
       return state;
   }
@@ -43,6 +51,11 @@ const reducer = (state, action) => {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect(()=> {
+    if(localStorage.getItem('token')){
+      dispatch({type:"SET_STATE"})
+    }
+  },[])
   return (
     <AuthContext.Provider value={{
       state,
@@ -51,12 +64,21 @@ const App = () => {
       <Router>
         <Header />
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUp />} />
+          {
+            !state.isAuthenticated && (
+              <Route path="/login" element={<LoginPage />} />
+            )
+          }
+           {
+            !state.isAuthenticated && (
+              <Route path="/signup" element={<SignUp />} />
+            )
+          }
           <Route path="/film" element={<ListMovies />} />
           <Route path="/addMovie" element={<AddMovie />} />
           <Route path="/slug/:slug" element={<ViewMovie />} />
           <Route path="/" element={<Navigate replace to="/film" />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Routes>
       </Router>
 
