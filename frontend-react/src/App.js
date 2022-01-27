@@ -75,7 +75,11 @@ const App = () => {
             )
           }
           <Route path="/film" element={<ListMovies />} />
-          <Route path="/addMovie" element={<AddMovie />} />
+          {
+            state.isAuthenticated && (
+              <Route path="/add-movie" element={<AddMovie />} />
+            )
+          }
           <Route path="/film/:slug" element={<ViewMovie />} />
           <Route path="/" element={<Navigate replace to="/film" />} />
           <Route path="*" element={<Navigate replace to="/" />} />
