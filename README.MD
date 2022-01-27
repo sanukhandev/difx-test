@@ -11,7 +11,7 @@ This is a simple movie listing application made with React-node javascript frame
 # List movie feature
 You can see all the movies added on the application by visiting `http://localhost:3000/`. it will give you a list of all movies add through add movie feature. 
 Sample Screen Below:
-!(List Movie)[https://i.ibb.co/TW5SBZF/screencapture-localhost-3000-film-2022-01-27-23-11-07.png]
+![List Movie](https://i.ibb.co/TW5SBZF/screencapture-localhost-3000-film-2022-01-27-23-11-07.png)
 # Add New Movie
 if you are a registerd user on the app and you are able to successfully logged in you can see a Add movie button on top nav bar and list movies page. By clicking on the same you can add new movies to the app.
 Sample Screen below:
