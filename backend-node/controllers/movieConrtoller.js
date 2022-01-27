@@ -1,10 +1,14 @@
-const {Movies, Comments, User} = require('../models');
+const {Movies, Comments, User, sequelize} = require('../models');
 const { slugGenerator } = require('../utils/commonUtil');
 const { mapData, mapError } = require('../utils/responseMapper');
 
 const getAllMovies = async (req, res) => {
     try {
-        const movies = await Movies.findAll();
+        const movies = await Movies.findAll({
+            attributes: ['id','movieName','movieDescription','releaseDate',[sequelize.fn('date_format', sequelize.col('releaseDate'), '%Y'), 'year'],'rating','ticketPrice','country','genre','slug']
+        },
+        
+        );
         mapData(movies, res);
     } catch (error) {
         mapError(error, res);
@@ -32,13 +36,11 @@ const getMoviesBySlug = async (req, res) => {
             where: {
                 slug,
             },
-            attributes: {
-                exclude: ['createdAt', 'updatedAt','userId']
-            },
+            attributes: ['id','movieName','movieDescription','poster','releaseDate',[sequelize.fn('date_format', sequelize.col('releaseDate'), '%Y'), 'year'],'rating','ticketPrice','country','genre','slug'],
             include: [{
                 model: Comments,
                 as: 'comments',
-                attributes: ['id', 'comment', 'status', 'createdAt', 'updatedAt'],
+                attributes: ['id', 'comment', 'status', [sequelize.fn('date_format', sequelize.col('comments.createdAt'), '%d, %b %Y @ %h:%m %p'), 'commentedOn']],
                 include: [{
                     model: User,
                     as: 'user',
@@ -54,17 +56,18 @@ const getMoviesBySlug = async (req, res) => {
 
 const createMovie = async (req, res) => {
     try {
-        const {title, description, year, rating, ticketPrice, genre, poster} = req.body;
+        const {name, description, date, rating, ticketPrice, genre, poster, country} = req.body;
+        console.log(req.body)
         const movie = await Movies.create({
-            name:title,
-            description,
-            year,
+            movieName:name,
+            movieDescription:description,
+            releaseDate:date,
             rating,
             ticketPrice,
             genre,
             poster,
-            trailerUrl,
-            slug: slugGenerator(title),
+            country,
+            slug: slugGenerator(name),
             userId: req.user.id
         });
         mapData(movie, res);

@@ -9,6 +9,6 @@ router.get('/get-movie-by-id/:id', getMoviesById )
 router.get('/get-movie-by-slug/:slug', getMoviesBySlug )
 router.post('/create-movie',authGurd, createMovie )
 router.post('/update-movie/:id',authGurd, updateMovie )
-router.post('/create-comment/:movieId',authGurd, addComment )
+router.post('/create-comment/',authGurd, addComment )
 
 module.exports = router;
