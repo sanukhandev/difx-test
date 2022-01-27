@@ -25,9 +25,14 @@ const Header = () => {
                                     <Link to='/'>
                                         <p className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">List Movies </p>
                                     </Link>
-                                    <Link to='/addMovie' >
-                                        <p className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Add Movie</p>
-                                    </Link>
+
+                                    {
+                                        state.isAuthenticated && (
+                                            <Link to='/addMovie' >
+                                                <p className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Add Movie</p>
+                                            </Link>
+                                        )
+                                    }
                                     {
                                         state.isAuthenticated && (
                                             <Link to='/user' >
