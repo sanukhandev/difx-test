@@ -30,7 +30,7 @@ Sample Screen below:
 # Comment on each movie
 if you are a registerd user on the app and you are able to successfully logged in you can see a add comment section on each movie page with all the previous comments made by all the user for the same movie. Just type in your comment and click on `post comment` button to post your comments about the 
 Sample Screen below:
-!(Comment Section)[https://i.ibb.co/TM5kn8G/screencapture-localhost-3000-film-the-godfather-2022-01-27-23-20-46.png]
+![Comment Section](https://i.ibb.co/TM5kn8G/screencapture-localhost-3000-film-the-godfather-2022-01-27-23-20-46.png)
 
 
 # Login
