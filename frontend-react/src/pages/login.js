@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../App";
 import ErrorAlert from "../components/errorAlert";
+import SuccessAlert from "../components/successAlert";
 import {fetchHookWithBody } from "../utils/fetchUtil";
 
 const LoginPage = () => {
     const { state,dispatch } = useContext(AuthContext);
+    const [success, setSuccess] = useState(false)
     const [isAuth, setIsAuth] = useState (state.isAuthenticated)
     const initialState = {
         email: "",
@@ -33,7 +35,7 @@ const LoginPage = () => {
             errorMessage: null
         });
         const loginPromise =  await fetchHookWithBody('auth/login', {method: 'POST'}, data);
-        if(loginPromise.status=== 'ERROR') {
+        if(loginPromise.status === 'ERROR') {
             setData({
                 ...data,
                 isSubmitting: false,
@@ -45,6 +47,10 @@ const LoginPage = () => {
                 isSubmitting: false,
                 errorMessage: null
             });
+            setSuccess('Login Successful')
+            setTimeout(() => {
+                window.location.replace('/film')
+            }, 2000);
             const {user, token} = await loginPromise.data
             dispatch({
                 type: "LOGIN",
@@ -61,7 +67,10 @@ const LoginPage = () => {
         <div className="mt-10 flex flex-col items-center justify-center">
             <div className=" flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md" >
                 {
-                    data.errorMessage && <ErrorAlert message={data.errorMessage} />
+                    data.errorMessage && <ErrorAlert error={data.errorMessage} />
+                }
+                {
+                    success && <SuccessAlert message={success} />
                 }
                 <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
                     Welcome Back
