@@ -1,40 +1,30 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ErrorAlert from "../components/errorAlert";
 import Table from "../components/table";
+import { fetchHook } from "../utils/fetchUtil";
 
-const ListMovies = ({ movies, onDeleteMovie }) => {
+const ListMovies = () => {
+    const [movies, setMovies] =  useState([])
+    const [error, setError] = useState(null)
+    const fetchMovies = async () => {
+           const moviesPromise = await fetchHook('films', {method:'GET'})
+           if(moviesPromise.status === 'ERROR'){
+                setError('Error fetching Movies')
+                setMovies([])
+           }
+           else{
+               setMovies(moviesPromise.data)
+           }
 
-    movies = [
-        {
-            id: 1,
-            title: "The Shawshank Redemption",
-            year: 1994,
-            genre: "Crime"
-        },
-        {
-            id: 2,
-            title: "The Godfather",
-            year: 1972,
-            genre: "Crime"
-        },
-        {
-            id: 3,
-            title: "The Godfather: Part II",
-            year: 1974,
-            genre: "Crime"
-        },
-        {
-            id: 4,
-            title: "The Dark Knight",
-            year: 2008,
-            genre: "Action"
-        }
-
-    ]
-
+    }
+    useEffect(()=> {
+       fetchMovies()
+    },[])
     const columns = [
         {
             label: "Title",
-            field: "title"
+            field: "movieName"
         },
         {
             label: "Year",
@@ -44,6 +34,14 @@ const ListMovies = ({ movies, onDeleteMovie }) => {
             label: "Genre",
             field: "genre"
         },
+        {
+            label:"Ticket",
+            field:"ticketPrice"
+        },
+        {
+            label:"Country",
+            field:"country"
+        }
         
     ];
     return (
@@ -63,7 +61,11 @@ const ListMovies = ({ movies, onDeleteMovie }) => {
                             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
                                     <div className="overflow-hidden">
-                                        <Table data={movies} columns={columns} />
+                                        {
+                                            error ? <ErrorAlert error={error}/>:
+                                            <Table data={movies} columns={columns} />
+                                        }
+                                        
                                     </div>
                                 </div>
                             </div>
