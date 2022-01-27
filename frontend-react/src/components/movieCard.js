@@ -1,25 +1,27 @@
-const MovieCard = (props) => {
-    const { movie } = props;
-    return (  
-                <div className="card mt-5 ml-10 ">
-                    <div className="rounded overflow-hidden shadow-lg bg-gray-100">
-                        <img className="w-full" src="https://static.vecteezy.com/system/resources/previews/001/882/528/non_2x/beautiful-landscape-pine-forest-with-mesmerizing-mountain-views-free-vector.jpg" alt="Mountain" />
-                        <div className="px-6 py-4">
-                            <div className="font-bold text-xl mb-2">
-                                {movie.title}
-                                <span className="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 cursor-pointer hover:bg-blue-600 transition delay-50 duration-300 ease-in-out mx-2">{movie.year}</span>
-
-                            </div>
-                            <p className="text-gray-700 text-base">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                            </p>
-                        </div>
-                        <div className="px-6 pt-4 pb-2">
-                            <span className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-100 mr-2 mb-2 cursor-pointer hover:bg-red-600 transition delay-50 duration-300 ease-in-out">#{movie.genre}</span>
-                        </div>
-                    </div>
+const MovieCard = ({ movie }) => {
+    return (
+        <div className="py-3 sm:max-w-xl sm:mx-auto mb-3">
+            <div className="bg-white shadow-lg border-gray-100 max-h-80	 border sm:rounded-3xl p-8 flex space-x-8">
+                <div className="h-48 overflow-visible w-1/2">
+                    <img className="rounded-3xl shadow-lg" src={movie.poster} alt="" />
                 </div>
-     )
+                <div className="flex flex-col w-1/2 space-y-4">
+                    <div className="flex justify-between items-start">
+                        <h2 className="text-3xl font-bold">{movie.movieName}</h2>
+                        
+                        <div className="bg-blue-300 font-bold rounded-xl p-2">{movie.rating}</div>
+                    </div>
+                    <div>
+                        <div className="text-sm text-gray-400">{movie.genre}</div>
+                        <div className="text-lg text-gray-800">{movie.year}</div>
+                    </div>
+                    <p className=" text-gray-400 max-h-40 overflow-y-hidden">{movie.movieDescription}</p>
+                    <div className="flex text-2xl font-bold text-a">${movie.ticketPrice}</div>
+                </div>
+
+            </div>
+        </div>
+    )
 }
 
 export default MovieCard;
