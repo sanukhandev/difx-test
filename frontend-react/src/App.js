@@ -77,7 +77,7 @@ const App = () => {
           <Route path="/film" element={<ListMovies />} />
           {
             state.isAuthenticated && (
-              <Route path="/add-movie" element={<AddMovie />} />
+              <Route path="/addMovie" element={<AddMovie />} />
             )
           }
           <Route path="/film/:slug" element={<ViewMovie />} />
