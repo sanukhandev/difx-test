@@ -1,11 +1,33 @@
-const NewComment = () => {
+import { useState } from "react"
+import { fetchHookWithTokenAndBody } from "../utils/fetchUtil";
+
+const NewComment = ({movieId, dispatch}) => {
+    const [commentObj, setCommentObj] = useState({comment:'', movieId})
+    const handleInputChange = event => {
+        setCommentObj({
+            ...commentObj,
+            [event.target.name]: event.target.value
+        });
+    };
+    const handleFormSubmit = async(event) => {
+        event.preventDefault();
+        const newCommentPromise = await fetchHookWithTokenAndBody('films/create-comment',{method:'POST'}, commentObj)
+        if(newCommentPromise.status === 'SUCCESS'){
+            dispatch({type:'NEW_COMMENT'})
+            setCommentObj({
+                ...commentObj,
+                comment:''
+            })
+        }
+
+    }
     return (
         <div className="flex mx-auto items-center justify-center shadow-lg mt-10 mb-4">
-            <form className="w-full  bg-white rounded-lg px-4 pt-2">
+            <form className="w-full  bg-white rounded-lg px-4 pt-2" onSubmit={handleFormSubmit}>
                 <div className="flex flex-wrap -mx-3 mb-6">
                     <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>
                     <div className="w-full md:w-full px-3 mb-2 mt-2">
-                        <textarea className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="body" placeholder='Type Your Comment' required></textarea>
+                        <textarea className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="comment" placeholder='Type Your Comment' required value={commentObj.comment} onChange={handleInputChange}></textarea>
                     </div>
                     <div className="w-full md:w-full flex items-start px-3">
                         <div className="flex items-start w-1/2 text-gray-700 px-2 mr-auto">
