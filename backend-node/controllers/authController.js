@@ -4,7 +4,7 @@ const {mapData, mapError} = require('../utils/responseMapper');
 const { generateAccessToken } = require('../utils/tokenizer');
 
 const registerUser = async (req, res) => {
-    const {email, password, firstName, lastName } = req.body;
+    const {email, password,firstName, lastName } = req.body;
     try {
         const user = await User.create({
             email,

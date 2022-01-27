@@ -3,11 +3,10 @@ const { mapData, mapError } = require('../utils/responseMapper');
 
 const addComment = async (req, res) => {
     try {
-        const {comment, status} = req.body;
-        const {movieId} = req.params;
+        const {comment, movieId} = req.body;
         const commentObj = await Comments.create({
             comment,
-            status,
+            status:1,
             movieId,
             userId: req.user.id
         });
