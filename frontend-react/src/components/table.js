@@ -35,7 +35,7 @@ const Table = (props) => {
                                     <td key={`column-index-${index}`} className="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                                         <Link
                                             to={{
-                                                pathname: `/slug/${movie.id}`,
+                                                pathname: `/film/${movie.slug}`,
                                             }}
                                         >{movie[column.field]}</Link>
                                     </td>
